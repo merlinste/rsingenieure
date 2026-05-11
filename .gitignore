@@ -1,0 +1,24 @@
+# OS / Editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+
+# Build artefakte (falls später Build-Step dazu kommt)
+node_modules/
+dist/
+.netlify/
+
+# Standalone-Export (wird bei Bedarf neu erzeugt)
+RS-Ingenieure.html
+index-standalone.html
+
+# Lokale Uploads / Scraps (nicht ins Repo)
+uploads/
+scraps/

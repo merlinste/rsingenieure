@@ -1,0 +1,30 @@
+# Build settings for Netlify
+# Static site — no build step needed (uses CDN-loaded React + Babel)
+
+[build]
+  publish = "."
+
+# Include the static-html-forms placeholder so Netlify Forms detects fields
+# even though the actual forms are rendered client-side via React.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=()"
+
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/styles.css"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"

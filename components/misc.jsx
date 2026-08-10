@@ -37,7 +37,7 @@ function WissenPage() {
 
 function TerminPage() {
   const [month, setMonth] = useStateMisc(0); // 0 = current
-  const [selDay, setSelDay] = useStateMisc(null);
+  const [sel, setSel] = useStateMisc(null); // { y, m, d } — volles Datum, nicht nur der Tag
   const [selSlot, setSelSlot] = useStateMisc(null);
   const [topic, setTopic] = useStateMisc("Energieberatung");
   const [done, setDone] = useStateMisc(false);
@@ -63,13 +63,17 @@ function TerminPage() {
 
   const slots = ["09:00", "10:00", "11:00", "13:30", "15:00", "16:30"];
 
+  // Datum aus der Auswahl — unabhängig davon, welcher Monat gerade angezeigt wird.
+  const selDate = sel && new Date(sel.y, sel.m, sel.d).toLocaleDateString("de-DE", { day: "numeric", month: "long", year: "numeric" });
+  const terminValue = sel && selSlot ? `${selDate} um ${selSlot} Uhr` : "";
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
     const formData = new FormData(form);
     const data = {};
     formData.forEach((v, k) => { data[k] = v; });
-    data["termin"] = `${selDay}. ${monthName} um ${selSlot} Uhr`;
+    data["termin"] = terminValue;
     setSubmitting(true);
     setError(null);
     fetch("/", {
@@ -87,7 +91,7 @@ function TerminPage() {
       <PageIntro
         crumbs="Termin"
         title="Vielen Dank."
-        lead={`Ihre Anfrage für den ${selDay}. ${monthName} um ${selSlot} Uhr ist eingegangen. Wir bestätigen den Termin innerhalb von 24 Stunden per E-Mail.`}
+        lead={`Ihre Anfrage für den ${terminValue} ist eingegangen. Wir bestätigen den Termin innerhalb von 24 Stunden per E-Mail.`}
       />
     );
   }
@@ -114,17 +118,17 @@ function TerminPage() {
                   c.empty
                     ? <div key={c.key} className="day empty"></div>
                     : <div key={c.key}
-                        className={"day " + (c.disabled ? "disabled" : "") + (selDay === c.d ? " selected" : "")}
-                        onClick={() => !c.disabled && setSelDay(c.d)}
+                        className={"day " + (c.disabled ? "disabled" : "") + (sel && sel.y === view.getFullYear() && sel.m === view.getMonth() && sel.d === c.d ? " selected" : "")}
+                        onClick={() => { if (!c.disabled) { setSel({ y: view.getFullYear(), m: view.getMonth(), d: c.d }); setSelSlot(null); } }}
                       >
                         {c.d}
                         {!c.disabled && <span className="dot"></span>}
                       </div>
                 ))}
               </div>
-              {selDay && (
+              {sel && (
                 <>
-                  <h4 style={{ fontFamily: "var(--font-mono)", fontSize: 11, letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--ink-mute)", marginTop: 32, marginBottom: 4, fontWeight: 400 }}>Verfügbare Zeiten</h4>
+                  <h4 style={{ fontFamily: "var(--font-mono)", fontSize: 11, letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--ink-mute)", marginTop: 32, marginBottom: 4, fontWeight: 400 }}>Verfügbare Zeiten am {selDate}</h4>
                   <div className="slots">
                     {slots.map((s) => (
                       <div key={s} className={"slot " + (selSlot === s ? "selected" : "")} onClick={() => setSelSlot(s)}>{s}</div>
@@ -144,7 +148,7 @@ function TerminPage() {
                 onSubmit={handleSubmit}
               >
                 <input type="hidden" name="form-name" value="termin" />
-                <input type="hidden" name="termin" value={selDay && selSlot ? `${selDay}. ${monthName} um ${selSlot} Uhr` : ""} />
+                <input type="hidden" name="termin" value={terminValue} />
                 <p style={{ display: "none" }}>
                   <label>Nicht ausfüllen: <input name="bot-field" /></label>
                 </p>
@@ -167,10 +171,10 @@ function TerminPage() {
                   {error && <div className="full" style={{ color: "#a04040", fontSize: 14 }}>{error}</div>}
                   <div className="full" style={{ marginTop: 8 }}>
                     <button type="submit" className="btn"
-                      disabled={!selDay || !selSlot || submitting}
-                      style={{ opacity: (!selDay || !selSlot || submitting) ? 0.4 : 1, pointerEvents: (!selDay || !selSlot || submitting) ? "none" : "auto" }}
+                      disabled={!sel || !selSlot || submitting}
+                      style={{ opacity: (!sel || !selSlot || submitting) ? 0.4 : 1, pointerEvents: (!sel || !selSlot || submitting) ? "none" : "auto" }}
                     >
-                      {submitting ? "Wird gesendet …" : selDay && selSlot ? `${selDay}. ${monthName} · ${selSlot} Uhr buchen` : "Datum & Zeit auswählen"}
+                      {submitting ? "Wird gesendet …" : sel && selSlot ? `${selDate} · ${selSlot} Uhr buchen` : "Datum & Zeit auswählen"}
                       <Arrow />
                     </button>
                   </div>

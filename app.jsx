@@ -14,6 +14,7 @@ const ROUTES = {
   "#/energieberatung": { Comp: EnergieberatungPage, title: "Energieberatung — R+S" },
   "#/heizung": { Comp: HeizungPage, title: "Heizung — R+S" },
   "#/pv-batteriespeicher": { Comp: PvPage, title: "PV & Batteriespeicher — R+S" },
+  "#/klimatisierung": { Comp: KlimatisierungPage, title: "Klimatisierung — R+S" },
   "#/wissen": { Comp: WissenPage, title: "Wissen — R+S" },
   "#/termin": { Comp: TerminPage, title: "Termin buchen — R+S" },
   "#/kontakt": { Comp: KontaktPage, title: "Kontakt — R+S" },

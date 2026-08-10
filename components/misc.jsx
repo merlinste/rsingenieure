@@ -4,6 +4,7 @@ const { useState: useStateMisc } = React;
 
 function WissenPage() {
   const posts = [
+    { tag: "Klimatisierung", date: "Juli 2026", title: "Kühlen mit der Wärmepumpe: So funktioniert es.", excerpt: "Viele Wärmepumpen können im Sommer auch kühlen — was reversible Systeme leisten, welche Voraussetzungen gelten und wann sich ein Split-Gerät eher lohnt.", read: "6 min" },
     { tag: "Förderung", date: "März 2026", title: "BEG-Förderung 2026: Was sich für Eigentümer:innen ändert.", excerpt: "Ein Überblick über die aktuellen Konditionen der Bundes­förderung für effiziente Gebäude — und wie Sie den iSFP-Bonus optimal nutzen.", read: "6 min" },
     { tag: "Wärmepumpe", date: "Februar 2026", title: "Wärmepumpe im Bestand: Voraussetzungen prüfen.", excerpt: "Hydraulischer Abgleich, Vor­lauftemperatur, Heizflächen — die wichtigsten Hebel für einen wirtschaftlichen Betrieb im Altbau.", read: "8 min" },
     { tag: "PV & Speicher", date: "Januar 2026", title: "Eigenverbrauch optimieren: Speicher richtig dimensionieren.", excerpt: "Warum der größte Speicher selten der wirtschaftlichste ist — und wie Sie Lastprofil, PV-Ertrag und Förder­logik zusammendenken.", read: "5 min" },
@@ -158,6 +159,7 @@ function TerminPage() {
                       <option>Energieberatung</option>
                       <option>Heizung & Wärmepumpe</option>
                       <option>PV & Batteriespeicher</option>
+                      <option>Klimatisierung</option>
                       <option>Sonstiges</option>
                     </select>
                   </div>
@@ -266,6 +268,7 @@ function KontaktPage() {
                       <option>Energieberatung & Förderung</option>
                       <option>Heizungstausch / Wärmepumpe</option>
                       <option>PV & Batteriespeicher</option>
+                      <option>Klimatisierung / Kühlung</option>
                       <option>Allgemeine Anfrage</option>
                     </select>
                   </div>

@@ -16,6 +16,7 @@ function Header({ route }) {
     { href: "#/energieberatung", label: "Energieberatung" },
     { href: "#/heizung", label: "Heizung" },
     { href: "#/pv-batteriespeicher", label: "PV & Batteriespeicher" },
+    { href: "#/klimatisierung", label: "Klimatisierung" },
     { href: "#/wissen", label: "Wissen" },
     { href: "#/termin", label: "Termin" },
   ];
@@ -53,7 +54,7 @@ function Footer() {
             <h4>R+S Ingenieurbüro</h4>
             <p>M. Eng. Florian Roth<br/>Merlin Stellwag</p>
             <p style={{ marginTop: 16, opacity: 0.7, fontSize: 13 }}>
-              Ganzheitliche Energieberatung, Wärmepumpen­planung und Photovoltaik-Konzepte für Wohn- und Nichtwohngebäude.
+              Ganzheitliche Energieberatung, Wärmepumpen­planung, Photovoltaik-Konzepte und Klimatisierung für Wohn- und Nichtwohngebäude.
             </p>
           </div>
           <div>
@@ -71,6 +72,7 @@ function Footer() {
             <p><a href="#/energieberatung">Energieberatung</a></p>
             <p><a href="#/heizung">Heizung & Wärmepumpen</a></p>
             <p><a href="#/pv-batteriespeicher">PV & Batteriespeicher</a></p>
+            <p><a href="#/klimatisierung">Klimatisierung</a></p>
             <p><a href="#/wissen">Wissen</a></p>
           </div>
         </div>
@@ -134,6 +136,8 @@ function Icon({ name, size = 20 }) {
       return <svg {...props}><path d="M3 8h15v8H3zM18 11v2h2v-2z"/><path d="M7 10v4M10 10v4"/></svg>;
     case "thermo":
       return <svg {...props}><path d="M10 14V4a2 2 0 1 1 4 0v10a4 4 0 1 1-4 0z"/><path d="M12 8v8"/></svg>;
+    case "snow":
+      return <svg {...props}><path d="M12 3v18M4.2 7.5l15.6 9M19.8 7.5l-15.6 9"/><path d="M9.8 4.4L12 6.6l2.2-2.2M9.8 19.6L12 17.4l2.2 2.2"/></svg>;
     default:
       return <svg {...props}><circle cx="12" cy="12" r="8"/></svg>;
   }

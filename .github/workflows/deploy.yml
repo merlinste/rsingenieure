@@ -1,0 +1,44 @@
+name: Deploy to Netlify
+
+# Deployt die Seite bei jedem Push auf main nach rsingenieure.com.
+# Voraussetzung: Repository-Secret NETLIFY_AUTH_TOKEN
+# (Netlify → User settings → Applications → Personal access tokens).
+#
+# Alternative ohne Secret: das Projekt in Netlify direkt mit diesem
+# Repository verknüpfen (Project configuration → Build & deploy →
+# Link repository, Production branch: main). Dann kann dieser Workflow weg.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Bei mehreren Pushes kurz hintereinander nur den letzten deployen,
+# damit sich Deploys nicht gegenseitig überholen.
+concurrency:
+  group: netlify-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Production deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Deploy to Netlify
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          # Site-ID ist keine Zugangsdaten, sie darf im Klartext stehen.
+          NETLIFY_SITE_ID: 82e745d9-ece3-4e02-9e1b-d8786a83b098
+        run: |
+          if [ -z "$NETLIFY_AUTH_TOKEN" ]; then
+            echo "::error::Secret NETLIFY_AUTH_TOKEN fehlt — Deploy übersprungen."
+            echo "Anlegen unter: Repository → Settings → Secrets and variables → Actions"
+            exit 1
+          fi
+          npx -y netlify-cli@latest deploy \
+            --prod \
+            --dir=. \
+            --message "GitHub Actions: ${{ github.sha }}"

@@ -17,7 +17,7 @@ function HomePage() {
             </div>
             <div>
               <p style={{ fontSize: 18, color: "var(--ink-soft)", maxWidth: "44ch", lineHeight: 1.55 }}>
-                Wir verknüpfen Photovoltaik, Wärmepumpen, Batteriespeicher und Wallboxen zu Konzepten, die ökologisch und wirtschaftlich überzeugen — mit transparenter Kommunikation und Beratung auf Augenhöhe.
+                Wir verknüpfen Photovoltaik, Wärmepumpen, Klimatisierung, Batteriespeicher und Wallboxen zu Konzepten, die ökologisch und wirtschaftlich überzeugen — mit transparenter Kommunikation und Beratung auf Augenhöhe.
               </p>
               <div style={{ display: "flex", gap: 12, marginTop: 32, flexWrap: "wrap" }}>
                 <a href="#/kontakt" className="btn">Kontakt aufnehmen <Arrow /></a>
@@ -45,10 +45,10 @@ function HomePage() {
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1.2fr", gap: 64, marginBottom: 64 }}>
             <div>
               <span className="eyebrow">Leistungen</span>
-              <h2 style={{ marginTop: 24 }}>Drei Bereiche, ein integriertes Konzept.</h2>
+              <h2 style={{ marginTop: 24 }}>Vier Bereiche, ein integriertes Konzept.</h2>
             </div>
             <p style={{ alignSelf: "end", color: "var(--ink-soft)", fontSize: 17, maxWidth: "52ch" }}>
-              Von der Energieberatung mit Förder­mittel­optimierung über die Heizungs­modernisierung bis zur Photovoltaik mit Speicher — wir denken Ihre Sanierung als Ganzes.
+              Von der Energieberatung mit Förder­mittel­optimierung über die Heizungs­modernisierung und Klimatisierung bis zur Photovoltaik mit Speicher — wir denken Ihre Sanierung als Ganzes.
             </p>
           </div>
 
@@ -57,9 +57,10 @@ function HomePage() {
               { num: "01", icon: "doc", title: "Energieberatung", text: "Analyse, GEG-Nachweise, Sanierungs­fahrpläne und Baubegleitung — geprüfte Qualitäts­sicherung mit voller Förder­fähigkeit.", href: "#/energieberatung" },
               { num: "02", icon: "thermo", title: "Heizung & Wärmepumpe", text: "Vom Heizungs­tausch über die Gebäude­optimierung bis zur Förder­mittel­beratung — wirtschaftlich und zukunfts­fähig.", href: "#/heizung" },
               { num: "03", icon: "sun", title: "PV & Batteriespeicher", text: "Photovoltaik, Speicher und Wallbox als Gesamt­system — auf Eigen­verbrauch und Wirtschaft­lichkeit optimiert.", href: "#/pv-batteriespeicher" },
+              { num: "04", icon: "snow", title: "Klimatisierung", text: "Kühl­konzepte für heiße Sommer — von der reversiblen Wärme­pumpe über Split-Geräte bis zum passiven Wärme­schutz.", href: "#/klimatisierung" },
             ].map((c) => (
               <a key={c.num} href={c.href} className="card-svc">
-                <span className="num">{c.num} / 03</span>
+                <span className="num">{c.num} / 04</span>
                 <span className="icon-frame"><Icon name={c.icon} size={20} /></span>
                 <h3>{c.title}</h3>
                 <p>{c.text}</p>

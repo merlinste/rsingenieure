@@ -72,7 +72,7 @@ Kontakt- und Termin-Formular nutzen **Netlify Forms** — keine externe API, kei
 ├── components/
 │   ├── shared.jsx           # Header, Footer, BrandMark, Icon, Placeholder
 │   ├── home.jsx             # Startseite
-│   ├── services.jsx         # Energieberatung / Heizung / PV
+│   ├── services.jsx         # Energieberatung / Heizung / PV / Klimatisierung
 │   ├── misc.jsx             # Wissen / Termin / Kontakt / Impressum / Datenschutz
 │   └── cookie.jsx           # DSGVO-Consent-Banner
 ├── images/                  # Hero- und Header-Bilder
@@ -102,6 +102,7 @@ Kontakt- und Termin-Formular nutzen **Netlify Forms** — keine externe API, kei
 - [ ] Bilder in JPG/WebP komprimieren (`squoosh.app` o. Ä.)
 - [ ] Datenschutzerklärung anwaltlich prüfen lassen
 - [ ] Team-Portrait einsetzen (siehe Briefing)
+- [ ] Header-Bild für die Klimatisierungs-Seite ergänzen (`images/klimatisierung.png`, dann in `services.jsx` als `src` eintragen)
 - [ ] OG-Image für Social Sharing (1200×630)
 - [ ] Domain `rsingenieure.com` auf Netlify umlenken
 - [ ] Formular-Test mit echter E-Mail-Adresse

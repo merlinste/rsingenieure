@@ -1,4 +1,4 @@
-// Service pages: Energieberatung, Heizung, PV
+// Service pages: Energieberatung, Heizung, PV, Klimatisierung
 
 function PageIntro({ crumbs, title, lead }) {
   return (
@@ -136,6 +136,68 @@ function PvPage() {
   );
 }
 
+function KlimatisierungPage() {
+  return (
+    <>
+      <PageIntro
+        crumbs="Klimatisierung"
+        title="Klimatisierung & Kühlung."
+        lead="Heiße Sommer sind längst die Regel — angenehm kühle Räume kein Luxus mehr, sondern Teil eines durchdachten Gebäude­konzepts. Wir planen Kühl­lösungen, die Behaglichkeit, Energie­effizienz und Wirtschaftlichkeit verbinden: von der reversiblen Wärme­pumpe über Split-Klimageräte bis zum passiven Wärme­schutz."
+      />
+      <section style={{ paddingTop: 0 }}>
+        <div className="container">
+          <Placeholder label="Klimagerät-Außeneinheit · Flächenkühlung · Verschattung" ratio="21:9" src={window.__resources && window.__resources.klimatisierungImg} />
+        </div>
+      </section>
+
+      <section style={{ background: "var(--bg-soft)" }}>
+        <div className="container">
+          <div className="split">
+            <div className="stick">
+              <span className="eyebrow">Bedeutung</span>
+              <h2 style={{ marginTop: 24 }}>Warum Klimatisierung immer wichtiger wird.</h2>
+            </div>
+            <div>
+              <p style={{ fontSize: 18, color: "var(--ink-soft)", lineHeight: 1.6, marginBottom: 32 }}>
+                Mit dem Klimawandel nehmen Hitze­tage und Tropen­nächte spürbar zu — gut gedämmte Gebäude halten Wärme im Winter, speichern sie im Sommer aber ebenso. Wer heute saniert oder neu baut, sollte Kühlung von Anfang an mitdenken: technisch, baulich und wirtschaftlich.
+              </p>
+              <ol className="detail-list" style={{ paddingLeft: 0 }}>
+                {[
+                  { n: "01", t: "Klimawandel & Hitzeperioden", d: "Die Zahl der heißen Tage steigt von Jahr zu Jahr. Überhitzte Innen­räume beeinträchtigen Schlaf, Konzentration und Gesundheit — eine geplante Kühlung schafft dauerhaft Abhilfe." },
+                  { n: "02", t: "Sommerlicher Wärmeschutz & GEG", d: "Für Neubau und viele Sanierungen ist der sommerliche Wärme­schutz (DIN 4108-2) nachzuweisen. Wir integrieren die Anforderungen frühzeitig in Ihr Energie­konzept." },
+                  { n: "03", t: "Behaglichkeit & Werterhalt", d: "Konstante Temperaturen und entfeuchtete Luft steigern Wohn- und Arbeits­qualität — und machen Ihre Immobilie fit für kommende Sommer." },
+                  { n: "04", t: "Effizient statt Stromfresser", d: "Richtig dimensioniert und mit eigenem PV-Strom betrieben, kühlt moderne Technik überraschend sparsam — als Teil des Gesamt­systems aus Wärme­pumpe, Photovoltaik und Speicher." },
+                ].map((s) => (
+                  <li key={s.n}><span className="num">{s.n}</span><div><h3>{s.t}</h3><p>{s.d}</p></div></li>
+                ))}
+              </ol>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section style={{ paddingBottom: 0 }}>
+        <div className="container">
+          <div style={{ marginBottom: 48 }}>
+            <span className="eyebrow">Möglichkeiten</span>
+            <h2 style={{ marginTop: 24 }}>Vom passiven Wärmeschutz bis zur aktiven Kühlung.</h2>
+          </div>
+        </div>
+      </section>
+      <ServiceList items={[
+          { title: "Reversible Wärmepumpe: Heizen & Kühlen", text: "Viele Wärme­pumpen können im Sommer aktiv kühlen — über Flächen­heizung oder Gebläse­konvektoren, ganz ohne separate Klima­anlage. Wir prüfen, ob Ihr System dafür geeignet ist, und planen die Umsetzung." },
+          { title: "Split- & Multisplit-Klimaanlagen", text: "Effiziente Klima­geräte für einzelne Räume oder ganze Wohn­einheiten — leise, sparsam und mit Heiz­funktion für die Übergangs­zeit. Wir übernehmen Auslegung, Geräte­auswahl und Ausschreibung." },
+          { title: "Flächenkühlung über Boden & Decke", text: "Stille Kühlung ohne Zugluft: Fußboden- oder Decken­systeme temperieren Räume sanft und gleichmäßig — mit Taupunkt­überwachung für einen sicheren Betrieb." },
+          { title: "Lüftung mit Wärmerückgewinnung", text: "Kontrollierte Wohnraum­lüftung mit Sommer-Bypass und Nacht­auskühlung — frische Luft ohne Wärme­eintrag, abgestimmt auf Gebäude und Nutzung." },
+          { title: "Passiver Wärmeschutz & Verschattung", text: "Außenliegender Sonnen­schutz, geeignete Verglasung und Dämmung senken die Kühl­last, bevor Technik nötig wird — die wirtschaftlichste Kühlung ist die, die Sie nicht brauchen." },
+          { title: "PV-gekoppelter Betrieb & Wirtschaftlichkeit", text: "Gekühlt wird, wenn die Sonne scheint — ideal für den Betrieb mit eigenem Photovoltaik-Strom. Wir rechnen Betriebs­kosten, Eigen­verbrauch und Förder­möglichkeiten transparent durch." },
+      ]} />
+      <CtaBlock />
+    </>
+  );
+}
+
 window.EnergieberatungPage = EnergieberatungPage;
 window.HeizungPage = HeizungPage;
 window.PvPage = PvPage;
+window.KlimatisierungPage = KlimatisierungPage;

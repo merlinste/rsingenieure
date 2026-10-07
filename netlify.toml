@@ -4,6 +4,11 @@
 [build]
   publish = "."
 
+# E-Mail-Benachrichtigung bei Formular-Einsendungen via Resend
+# (netlify/functions/submission-created.mjs, siehe README → Formulare)
+[functions]
+  directory = "netlify/functions"
+
 # Include the static-html-forms placeholder so Netlify Forms detects fields
 # even though the actual forms are rendered client-side via React.
 [[redirects]]

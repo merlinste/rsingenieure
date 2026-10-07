@@ -54,8 +54,26 @@ Für Forms: Site settings → Forms → **Form storage region: EU**.
 Kontakt- und Termin-Formular nutzen **Netlify Forms** — keine externe API, kein Backend nötig.
 
 - Einsendungen sind im Netlify-Dashboard unter „Forms" einsehbar
-- Für E-Mail-Weiterleitung an `info@rsingenieure.com`:
-  Site settings → Forms → Form notifications → „Add notification" → Email → Empfänger eintragen
+- Bei jeder Einsendung verschickt die Netlify Function `netlify/functions/submission-created.mjs`
+  eine E-Mail über [Resend](https://resend.com). „Antworten" in der Mail geht direkt an den Absender des Formulars.
+  Als Spam markierte Einsendungen lösen keine Mail aus — gelegentlich unter Forms → „Spam submissions" nachsehen.
+
+### E-Mail-Benachrichtigung einrichten (einmalig)
+
+1. Bei [resend.com](https://resend.com) die Domain `rsingenieure.com` hinzufügen und die angezeigten
+   DNS-Einträge (SPF/DKIM) beim Domain-Registrar eintragen, bis Resend sie als „Verified" anzeigt.
+   Region **EU (Frankfurt)** wählen (DSGVO).
+2. In Resend einen API-Key mit Berechtigung „Sending access" anlegen.
+3. In Netlify → Project configuration → Environment variables eintragen:
+
+   | Variable | Pflicht | Standard |
+   |---|---|---|
+   | `RESEND_API_KEY` | ja | — |
+   | `FORM_NOTIFY_TO` | nein | `info@rsingenieure.com` (mehrere Empfänger durch Komma trennen) |
+   | `FORM_NOTIFY_FROM` | nein | `R+S Website <website@rsingenieure.com>` |
+
+4. Neu deployen (Umgebungsvariablen greifen erst beim nächsten Deploy) und ein Testformular abschicken.
+   Fehler stehen unter Netlify → Logs → Functions → `submission-created`.
 - Honeypot-Spamschutz ist eingebaut (`bot-field`-Input)
 - 100 Einsendungen/Monat im Free-Tier inkludiert
 
@@ -76,6 +94,8 @@ Kontakt- und Termin-Formular nutzen **Netlify Forms** — keine externe API, kei
 │   ├── misc.jsx             # Wissen / Termin / Kontakt / Impressum / Datenschutz
 │   └── cookie.jsx           # DSGVO-Consent-Banner
 ├── images/                  # Hero- und Header-Bilder
+├── netlify/functions/
+│   └── submission-created.mjs  # E-Mail bei Formular-Einsendung (Resend)
 ├── netlify.toml             # Netlify-Konfiguration
 ├── README.md                # Diese Datei
 └── .gitignore

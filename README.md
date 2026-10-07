@@ -62,7 +62,7 @@ Kontakt- und Termin-Formular nutzen **Netlify Forms** — keine externe API, kei
 
 1. Bei [resend.com](https://resend.com) die Domain `rsingenieure.com` hinzufügen und die angezeigten
    DNS-Einträge (SPF/DKIM) beim Domain-Registrar eintragen, bis Resend sie als „Verified" anzeigt.
-   Region **EU (Frankfurt)** wählen (DSGVO).
+   Als Region eine **EU-Region** (z. B. eu-west-1, Irland) wählen (DSGVO).
 2. In Resend einen API-Key mit Berechtigung „Sending access" anlegen.
 3. In Netlify → Project configuration → Environment variables eintragen:
 
